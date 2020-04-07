@@ -243,16 +243,6 @@ function convertir(){
 	var puntaje_cie = document.getElementById('puntaje_cie').value;
 	var puntaje_his = document.getElementById('puntaje_his').value;
 
-	// Elementos a rellenar
-	var preguntas_mat = document.getElementById('preguntas_mat');
-	var nota_mat = document.getElementById('nota_mat');
-	var preguntas_len = document.getElementById('preguntas_len');
-	var nota_len = document.getElementById('nota_len');
-	var preguntas_cie = document.getElementById('preguntas_cie');
-	var nota_cie = document.getElementById('nota_cie');
-	var preguntas_his = document.getElementById('preguntas_his');
-	var nota_his = document.getElementById('nota_his');
-
 	var preguntas = 0;
 	var ano = document.getElementById('ano').value;
 
@@ -353,6 +343,28 @@ function convertir(){
 }
 
 function cambiar_ano(){
+	nota_mat.style.color = "black";
+	nota_len.style.color = "black";
+	nota_cie.style.color = "black";
+	nota_his.style.color = "black";
+	nota_mat60.style.color = "black";
+	nota_len60.style.color = "black";
+	nota_cie60.style.color = "black";
+	nota_his60.style.color = "black";
+
+	preguntas_mat.innerHTML = "";
+	preguntas_len.innerHTML = "";
+	preguntas_cie.innerHTML = "";
+	preguntas_his.innerHTML = "";
+	nota_mat.innerHTML = "";
+	nota_len.innerHTML = "";
+	nota_cie.innerHTML = "";
+	nota_his.innerHTML = "";
+	nota_mat60.innerHTML = "";
+	nota_len60.innerHTML = "";
+	nota_cie60.innerHTML = "";
+	nota_his60.innerHTML = "";
+
 	if(document.getElementById('ano').value == '2004'){
 		document.getElementById('ciencias').style.visibility="visible";
 	} else {
