@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>Convertidor de puntaje a nota</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
+		<style type="text/css">
+			img {border:0px;}
+		</style>
+		<script type="text/javascript">
+		//<![CDATA[
+function convertir(){
+	var puntajesMatematicas = [];
+	var maximoAlcanzadoMatematicas = [];
+	var maximoTeoricoMatematicas = [];
+	puntajesMatematicas["2021"] = [850, 814, 782, 776, 764, 750, 738, 729, 720, 713, 706, 700, 694, 689, 683, 678, 674, 669, 664, 660, 656, 651, 647, 645, 641, 634, 629, 625, 622, 616, 613, 606, 603, 598, 592, 586, 580, 574, 567, 559, 550, 540, 529, 509, 493, 475, 454, 437, 413, 387, 358, 319, 286, 254, 222, 213, 203, 192, 179, 166, 150];
+	maximoAlcanzadoMatematicas["2021"] = 60;
+	maximoTeoricoMatematicas["2021"] = 60;
+
+	var puntajesLenguaje = [];
+	var maximoAlcanzadoLenguaje = [];
+	var maximoTeoricoLenguaje = [];
+	puntajesLenguaje["2021"] = [850, 838, 825, 814, 803, 793, 783, 764, 740, 718, 693, 684, 666, 651, 636, 622, 609, 596, 584, 573, 562, 551, 540, 530, 520, 510, 500, 490, 481, 471, 461, 450, 440, 428, 420, 409, 399, 388, 377, 366, 355, 343, 330, 317, 304, 290, 272, 257, 244, 227, 214, 209, 203, 198, 192, 186, 180, 173, 165, 158, 150];
+	maximoAlcanzadoLenguaje["2021"] = 60;
+	maximoTeoricoLenguaje["2021"] = 60;
+
+	var puntajesCiencias = [];
+	var maximoAlcanzadoCiencias = [];
+	var maximoTeoricoCiencias = [];
+	puntajesCiencias["2021"] = [850, 837, 826, 814, 805, 794, 784, 774, 761, 751, 740, 732, 724, 717, 711, 705, 699, 694, 689, 684, 679, 675, 670, 666, 663, 659, 655, 651, 648, 644, 640, 636, 632, 629, 625, 621, 617, 613, 609, 603, 598, 593, 588, 583, 577, 572, 566, 559, 552, 545, 535, 527, 517, 506, 495, 483, 472, 458, 442, 422, 404, 384, 363, 343, 321, 299, 279, 258, 234, 215, 212, 206, 197, 190, 184, 179, 166, 159, 150];
+	maximoAlcanzadoCiencias["2021"] = 78;
+	maximoTeoricoCiencias["2021"] = 80;
+
+	var puntajesHistoria = [];
+	var maximoAlcanzadoHistoria = [];
+	var maximoTeoricoHistoria = [];
+	puntajesHistoria["2021"] = [850, 841, 831, 823, 817, 816, 809, 803, 795, 788, 782, 774, 763, 751, 741, 731, 721, 714, 704, 699, 691, 684, 673, 665, 658, 651, 645, 638, 631, 624, 620, 613, 606, 599, 588, 580, 572, 564, 556, 547, 543, 534, 525, 515, 505, 495, 479, 468, 457, 445, 438, 425, 412, 398, 383, 368, 351, 333, 314, 294, 273, 252, 230, 216, 212, 207, 201, 196, 193, 184, 179, 173, 166, 150]
+;
+	maximoAlcanzadoHistoria["2021"] = 73;
+	maximoTeoricoHistoria["2021"] = 80;
+
+	// Puntajes a usar
+	var puntaje_mat = document.getElementById('puntaje_mat').value;
+	var puntaje_len = document.getElementById('puntaje_len').value;
+	var puntaje_cie = document.getElementById('puntaje_cie').value;
+	var puntaje_his = document.getElementById('puntaje_his').value;
+
+	var preguntas = 0;
+	var ano = document.getElementById('ano').value;
+
+	// Matemáticas
+	preguntas = 0;
+	for(i=0; i<puntajesMatematicas[ano].length; ++i)
+		if(puntaje_mat>=puntajesMatematicas[ano][i]) {
+			preguntas = maximoAlcanzadoMatematicas[ano] - i;
+			break;
+		}
+	preguntas_mat.innerHTML = preguntas + '/' + maximoTeoricoMatematicas[ano] + ' (' + Math.round(1000*(preguntas/maximoTeoricoMatematicas[ano]))/10 + '%)';
+	nota_mat.innerHTML = Math.round(100*(preguntas/maximoTeoricoMatematicas[ano]*6+1))/100;
+	corte = maximoTeoricoMatematicas[ano]*.6;
+	if(preguntas>corte)
+		nota_mat60.innerHTML = Math.round(100*((preguntas-corte)/(maximoTeoricoMatematicas[ano]-corte)*3+4))/100;
+	else
+		nota_mat60.innerHTML = Math.round(100*((preguntas)/corte*3+1))/100;
+	// Lenguaje
+	preguntas = 0;
+	for(i=0; i<puntajesLenguaje[ano].length; ++i)
+		if(puntaje_len>=puntajesLenguaje[ano][i]) {
+			preguntas = maximoAlcanzadoLenguaje[ano] - i;
+			break;
+		}
+	preguntas_len.innerHTML = preguntas + '/' + maximoTeoricoLenguaje[ano] + ' (' + Math.round(1000*(preguntas/maximoTeoricoLenguaje[ano]))/10 + '%)';
+	nota_len.innerHTML = Math.round(100*(preguntas/maximoTeoricoLenguaje[ano]*6+1))/100;
+	corte = maximoTeoricoLenguaje[ano]*.6;
+	if(preguntas>corte)
+		nota_len60.innerHTML = Math.round(100*((preguntas-corte)/(maximoTeoricoLenguaje[ano]-corte)*3+4))/100;
+	else
+		nota_len60.innerHTML = Math.round(100*((preguntas)/corte*3+1))/100;
+	// Ciencias
+	preguntas = 0;
+	for(i=0; i<puntajesCiencias[ano].length; ++i)
+		if(puntaje_cie>=puntajesCiencias[ano][i]) {
+			preguntas = maximoAlcanzadoCiencias[ano] - i;
+			break;
+		}
+	preguntas_cie.innerHTML = preguntas + '/' + maximoTeoricoCiencias[ano] + ' (' + Math.round(1000*(preguntas/maximoTeoricoCiencias[ano]))/10 + '%)';
+	nota_cie.innerHTML = Math.round(100*(preguntas/maximoTeoricoCiencias[ano]*6+1))/100;
+	corte = maximoTeoricoCiencias[ano]*.6;
+	if(preguntas>corte)
+		nota_cie60.innerHTML = Math.round(100*((preguntas-corte)/(maximoTeoricoCiencias[ano]-corte)*3+4))/100;
+	else
+		nota_cie60.innerHTML = Math.round(100*((preguntas)/corte*3+1))/100;
+	// Historia
+	preguntas = 0;
+	for(i=0; i<puntajesHistoria[ano].length; ++i)
+		if(puntaje_his>=puntajesHistoria[ano][i]) {
+			preguntas = maximoAlcanzadoHistoria[ano] - i;
+			break;
+		}
+	preguntas_his.innerHTML = preguntas + '/75 (' + Math.round(1000*(preguntas/maximoTeoricoHistoria[ano]))/10 + '%)';
+	nota_his.innerHTML = Math.round(100*(preguntas/maximoTeoricoHistoria[ano]*6+1))/100;
+	corte = maximoTeoricoHistoria[ano]*.6;
+	if(preguntas>corte)
+		nota_his60.innerHTML = Math.round(100*((preguntas-corte)/((maximoTeoricoHistoria[ano]-corte))*3+4))/100;
+	else
+		nota_his60.innerHTML = Math.round(100*((preguntas)/corte*3+1))/100;
+
+	// Pintar las notas
+	nota_mat.style.color = "blue";
+	nota_len.style.color = "blue";
+	nota_cie.style.color = "blue";
+	nota_his.style.color = "blue";
+	nota_mat60.style.color = "blue";
+	nota_len60.style.color = "blue";
+	nota_cie60.style.color = "blue";
+	nota_his60.style.color = "blue";
+
+	if(nota_mat.innerHTML < 4)
+		nota_mat.style.color = "red";
+	if(nota_len.innerHTML < 4)
+		nota_len.style.color = "red";
+	if(nota_cie.innerHTML < 4)
+		nota_cie.style.color = "red";
+	if(nota_his.innerHTML < 4)
+		nota_his.style.color = "red";
+	if(nota_mat60.innerHTML < 4)
+		nota_mat60.style.color = "red";
+	if(nota_len60.innerHTML < 4)
+		nota_len60.style.color = "red";
+	if(nota_cie60.innerHTML < 4)
+		nota_cie60.style.color = "red";
+	if(nota_his60.innerHTML < 4)
+		nota_his60.style.color = "red";
+
+	return false;
+}
+
+function cambiar_ano(){
+	nota_mat.style.color = "black";
+	nota_len.style.color = "black";
+	nota_cie.style.color = "black";
+	nota_his.style.color = "black";
+	nota_mat60.style.color = "black";
+	nota_len60.style.color = "black";
+	nota_cie60.style.color = "black";
+	nota_his60.style.color = "black";
+
+	preguntas_mat.innerHTML = "";
+	preguntas_len.innerHTML = "";
+	preguntas_cie.innerHTML = "";
+	preguntas_his.innerHTML = "";
+	nota_mat.innerHTML = "";
+	nota_len.innerHTML = "";
+	nota_cie.innerHTML = "";
+	nota_his.innerHTML = "";
+	nota_mat60.innerHTML = "";
+	nota_len60.innerHTML = "";
+	nota_cie60.innerHTML = "";
+	nota_his60.innerHTML = "";
+}
+		//]]>
+		</script>
+	</head>
+	<body onload="cambiar_ano()">
+		<h4>Convierte tu puntaje en notas</h4>
+		<p>Pueden buscar sus puntajes en <a href="http://www.peseu.com">peseu.com</a> si no se acuerdan cu&aacute;nto sacaron.</p>
+		<form action="" method="post" onsubmit="return convertir();">
+			<div>
+				Selecciona el a&ntilde;o que diste la prueba:
+				<select id="ano" onchange="cambiar_ano();">
+					<option value="2021">PTU 2021 - admisi&oacute;n 2021</option>
+				</select>
+				<br />
+				<br />
+				<table border="1">
+					<tr>
+						<th>Prueba</th>
+						<th>Puntaje</th>
+						<th>Preguntas Correctas</th>
+						<th>Nota (50%)</th>
+						<th>Nota (60%)</th>
+					</tr>
+					<tr>
+						<td>Matem&aacute;ticas: </td>
+						<td><input id="puntaje_mat" type="text" value="500" /></td>
+						<td id="preguntas_mat"></td>
+						<td id="nota_mat"></td>
+						<td id="nota_mat60"></td>
+					</tr>
+					<tr>
+						<td>Lenguaje: </td>
+						<td><input id="puntaje_len" type="text" value="500" /></td>
+						<td id="preguntas_len"></td>
+						<td id="nota_len"></td>
+						<td id="nota_len60"></td>
+					</tr>
+					<tr>
+						<td>Ciencias: </td>
+						<td><input id="puntaje_cie" type="text" value="500" /></td>
+						<td id="preguntas_cie"></td>
+						<td id="nota_cie"></td>
+						<td id="nota_cie60"></td>
+					</tr>
+					<tr id="tr_historia">
+						<td>Historia: </td>
+						<td><input id="puntaje_his" type="text" value="500" /></td>
+						<td id="preguntas_his"></td>
+						<td id="nota_his"></td>
+						<td id="nota_his60"></td>
+					</tr>
+				</table>
+				<br />
+				<input type="submit" name="submitFormConvertir" value="Convertir" />
+			</div>
+		</form>
+		<p>
+			Convierte puntajes PTU a nota entre 1 y 7 con una escala de 50% y 60%.<br />
+			Tablas de puntajes obtenidas de <a href="https://demre.cl/proceso-admision/factores-seleccion/tabla-transformacion-puntajes">la p&aacute;gina del Demre</a>.<br />
+			Todo el c&aacute;lculo se hace en Javascript en esta misma p&aacute;gina, por si alguien quiere revisarlo.<br />
+			Reclamos, comentarios quejas y otros al mail jisaa [arroba] puc.cl
+		</p>
+		<p>
+			Para los que tienen curiosidad, el promedio de la PTU siempre es 500 puntos (con una desviación estándar de 110, truncando entre 150 y 850), la escala se recalcula todos los a&ntilde;os para mantener esto.<br />
+		</p>
+		<p>
+			Por último un gráfico con más detalle de la prueba de matemáticas del año 2021.<br />
+			<img src="detallePTUMat2021.png" alt="Detalle prueba matemáticas" />
+		</p>
+		<p>
+			<a href="notas-psu.html">Convertidor de puntajes PSU admisiones 2004 a 2020</a>.<br />
+		</p>
+		<p>Fuentes de datos:</p>
+		<ul style="font-size:75%">
+			<li><a href="https://demre.cl/proceso-admision/factores-seleccion/tabla-transformacion-puntajes">Estad&iacute;sticas DEMRE admisi&oacute;n 2021</a></li>
+		</ul>
+		<p>
+			Para compartir esta página, el link fácil es <a href="http://bit.do/puntajes">bit.do/puntajes</a>
+		</p>
+		<p>
+			<a href="http://validator.w3.org/check?uri=https://jisaa.github.io/psu/notas-ptu.html">
+				<img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" />
+			</a>
+		</p>
+	</body>
+</html>
